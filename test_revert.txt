@@ -1,7 +1,0 @@
-add some test
-Hello
-World
-
-add 1
-add 22233222
-add3
