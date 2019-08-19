@@ -76,10 +76,11 @@ function statTimeBlock($outputPath, $beginDate, $endDate)
 
 	$outputFileHandle = fopen($outputPath, 'w');
 	// fputcsv($outputFileHandle, ['开始时间', '持续时间', '事件类别', '事件内容', '备注']);
-	$header = ['开始时间', '持续时间', '事件类别', '事件内容', '备注'];
+	$header = ['开始时间', '持续时间(h)', '事件类别', '事件内容', '备注'];
 	fputs($outputFileHandle, iconv('UTF-8', 'GBK//TRANSLIT', implode(",", $header) . "\n"));
 	while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 		$count++;
+		$row['duration_time'] = $row['duration_time'] / 60;
 		fputs($outputFileHandle, iconv('UTF-8', 'GBK//TRANSLIT', implode(",", $row). "\n"));
 	}
 	echo "成功写入数据共" . $count . "条\n";
